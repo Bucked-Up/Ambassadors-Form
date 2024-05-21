@@ -255,7 +255,6 @@ const getValues = () => {
   formFields.postal_code = document.querySelector("#zip").value;
   formFields.country = document.querySelector("#country").value.split("-")[1];
   formFields.state = document.querySelector("#state").value;
-  formFields.payout_data = document.querySelector("#payout-data").value;
   formFields.social_media_accounts = [];
   const socials = document.querySelectorAll(".social");
   socials.forEach((social) => {
