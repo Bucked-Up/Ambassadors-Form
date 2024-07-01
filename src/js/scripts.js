@@ -310,5 +310,5 @@ form.addEventListener("submit", async (e) => {
     spinner.classList.toggle("active");
     return;
   }
-  window.location.href = "https://get.buckedup.com/amb-thankyou"
+  window.location.href = "https://promo.buckedup.com/ambassador-thank-you"
 });
