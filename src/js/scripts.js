@@ -1,4 +1,4 @@
-const form = document.querySelector("#custom-form");
+const form = document.querySelector("#ambassador-form");
 const allInputs = form.querySelectorAll("input");
 
 const createInvalid = (text) => {
