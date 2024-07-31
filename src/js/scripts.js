@@ -310,5 +310,10 @@ form.addEventListener("submit", async (e) => {
     spinner.classList.toggle("active");
     return;
   }
+  try{
+    ttq.track('CompleteRegistration')
+  }catch(e){
+    console.warn("error ttq",e)
+  }
   window.location.href = "https://promo.buckedup.com/ambassador-thank-you"
 });
