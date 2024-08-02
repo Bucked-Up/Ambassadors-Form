@@ -174,7 +174,6 @@ const createSocial = (name, svg) => {
 };
 
 socials.appendChild(createSocial("instagram", svgInsta));
-watchSelects();
 const socialsElement = document.querySelector(".socials");
 
 addInsta.addEventListener("click", () => {
