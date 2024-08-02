@@ -13,23 +13,14 @@ const checkInput = (input) => {
 
   const valueIsNotValid = () => {
     return (
-      (regex && !reg.test(input.value)) ||
-      (match && input.value !== match.value) ||
-      (matcher && input.value !== matcher.value && matcher.value.length !== 0)
+      (regex && !reg.test(input.value)) || (match && input.value !== match.value) || (matcher && input.value !== matcher.value && matcher.value.length !== 0)
     );
   };
 
   if (input.type === "checkbox" && !input.checked) return false;
-  if (
-    (!input.hasAttribute("optional") && input.value.trim().length === 0) ||
-    valueIsNotValid()
-  ) {
+  if ((!input.hasAttribute("optional") && input.value.trim().length === 0) || valueIsNotValid()) {
     input.classList.add("error");
-    if (
-      valueIsNotValid() &&
-      input.value.trim().length > 0 &&
-      !input.nextElementSibling?.classList.contains("error-text")
-    ) {
+    if (valueIsNotValid() && input.value.trim().length > 0 && !input.nextElementSibling?.classList.contains("error-text")) {
       input.insertAdjacentHTML("afterend", createInvalid("Invalid!"));
     }
     return false;
@@ -37,12 +28,9 @@ const checkInput = (input) => {
   input.classList.remove("error");
   matcher?.classList.remove("error");
   match?.classList.remove("error");
-  if (input.nextElementSibling?.classList.contains("error-text"))
-    input.nextElementSibling.remove();
-  if (matcher?.nextElementSibling?.classList.contains("error-text"))
-    matcher?.nextElementSibling.remove();
-  if (match?.nextElementSibling?.classList.contains("error-text"))
-    match?.nextElementSibling.remove();
+  if (input.nextElementSibling?.classList.contains("error-text")) input.nextElementSibling.remove();
+  if (matcher?.nextElementSibling?.classList.contains("error-text")) matcher?.nextElementSibling.remove();
+  if (match?.nextElementSibling?.classList.contains("error-text")) match?.nextElementSibling.remove();
   return true;
 };
 
@@ -62,27 +50,23 @@ allInputs.forEach((input) => {
 
 const countrySelect = document.querySelector("#country");
 const stateSelect = document.querySelector("#state");
-const customStateSelect = document.querySelector("[original-id='state']")
-const customStateSelectName = customStateSelect.querySelector(".custom-select__name")
+const stateSelectLabel = stateSelect.parentNode;
 const spinner = document.createElement("span");
 spinner.classList.add("lds-dual-ring");
+stateSelectLabel.appendChild(spinner)
 
 const updateStates = async () => {
   stateSelect.toggleAttribute("disabled");
-  customStateSelectName.appendChild(spinner);
-  customStateSelect.classList.toggle("loading");
+  stateSelectLabel.classList.toggle("loading");
   const body = {};
   body.country = countrySelect.value.split("-")[0];
-  const response = await fetch(
-    `https://countriesnow.space/api/v0.1/countries/states`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }
-  );
+  const response = await fetch(`https://countriesnow.space/api/v0.1/countries/states`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
   const responseJson = await response.json();
   if (!response.ok) {
     alert("There was a problem fetching the states of the selected country.");
@@ -100,36 +84,30 @@ const updateStates = async () => {
     option.innerHTML = state.name;
     stateSelect.appendChild(option);
   });
-  updateSelect(stateSelect);
   stateSelect.toggleAttribute("disabled");
-  customStateSelect.classList.toggle("loading")
+  stateSelectLabel.classList.toggle("loading");
   return responseJson;
 };
 
 const getUrlParams = async () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const firstName = urlParams.get('first-name')
-  const lastName = urlParams.get('last-name')
-  const mail = urlParams.get('email')
-  const phone = urlParams.get('phone')
-  const state = urlParams.get('state')
-  const city = urlParams.get('city')
+  const firstName = urlParams.get("first-name");
+  const lastName = urlParams.get("last-name");
+  const mail = urlParams.get("email");
+  const phone = urlParams.get("phone");
+  const state = urlParams.get("state");
+  const city = urlParams.get("city");
   if (firstName) {
-    document.querySelector("#first-name").value = firstName
-    document.querySelector("#last-name").value = lastName
-    document.querySelector("#email").value = mail
-    document.querySelector("#email-confirm").value = mail
-    document.querySelector("#phone").value = phone
-    document.querySelector("#city").value = city
+    document.querySelector("#first-name").value = firstName;
+    document.querySelector("#last-name").value = lastName;
+    document.querySelector("#email").value = mail;
+    document.querySelector("#email-confirm").value = mail;
+    document.querySelector("#phone").value = phone;
+    document.querySelector("#city").value = city;
   }
   await updateStates();
-  if(state){
-    document.querySelector("#state").value = state
-    const stateCustomSelect = document.querySelector('[original-id="state"]')
-    const stateSelectName = stateCustomSelect.querySelector(".custom-select__name")
-    stateSelectName.innerHTML = stateSelect.querySelector(`[value="${state}"]`).innerHTML
-  }
-}
+  if (state) document.querySelector("#state").value = state;
+};
 
 countrySelect.addEventListener("change", async () => {
   updateStates();
@@ -231,9 +209,6 @@ const validateForm = () => {
       select.addEventListener("change", () => {
         if (select.value !== "") {
           select.classList.remove("error");
-          document
-            .querySelector(`[original-id="${select.id}"]`)
-            .classList.remove("error");
         }
       });
     }
@@ -285,30 +260,26 @@ form.addEventListener("submit", async (e) => {
   const body = getValues();
   const urlParams = new URLSearchParams(window.location.search);
   body.parent_id = urlParams.get("pid");
-  try{
-    body.source = urlParams.get("source") || sourceField
-  }catch{
-    body.source = urlParams.get("source") || "no-source-provided"
+  try {
+    body.source = urlParams.get("source") || sourceField;
+  } catch {
+    body.source = urlParams.get("source") || "no-source-provided";
   }
-  const response = await fetch(
-    "https://www.buckedup.com/ambassador/register-ext/json",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }
-  );
+  const response = await fetch("https://www.buckedup.com/ambassador/register-ext/json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
   if (!response.ok) {
     const responseLog = await response.json();
     apiErrorField.classList.toggle("active");
-    if (responseLog.error_code === "AlreadyAffiliate")
-      responseLog.error_message = "The customer account is already associated with a ambassador application"
+    if (responseLog.error_code === "AlreadyAffiliate") responseLog.error_message = "The customer account is already associated with a ambassador application";
     apiErrorField.innerHTML = responseLog.error_message;
     button.toggleAttribute("disabled");
     spinner.classList.toggle("active");
     return;
   }
-  window.location.href = "https://promo.buckedup.com/ambassador-thank-you"
+  window.location.href = "https://promo.buckedup.com/ambassador-thank-you";
 });
