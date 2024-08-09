@@ -50,10 +50,6 @@ allInputs.forEach((input) => {
 
 const countrySelect = document.querySelector("#country");
 const stateSelect = document.querySelector("#state");
-const stateSelectLabel = stateSelect.parentNode;
-const spinner = document.createElement("span");
-spinner.classList.add("lds-dual-ring");
-stateSelectLabel.appendChild(spinner)
 
 const updateStates = async () => {
   const statesObj = {
