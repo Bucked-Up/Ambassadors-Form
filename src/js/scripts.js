@@ -58,9 +58,9 @@ const updateStates = async () => {
     CA: '<option value="">Please Select</option><option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="MB">Manitoba</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland and Labrador</option><option value="NT">Northwest Territories</option><option value="NS">Nova Scotia</option><option value="NU">Nunavut</option><option value="ON">Ontario</option><option value="PE">Prince Edward Island</option><option value="QC">Quebec</option><option value="SK">Saskatchewan</option><option value="YT">Yukon</option>',
     MX: '<option value="">Please Select</option><option value="AGU">Aguascalientes</option><option value="BCN">Baja California</option><option value="BCS">Baja California Sur</option><option value="CAM">Campeche</option><option value="CHP">Chiapas</option><option value="CHH">Chihuahua</option><option value="COA">Coahuila</option><option value="COL">Colima</option><option value="DUR">Durango</option><option value="GUA">Guanajuato</option><option value="GRO">Guerrero</option><option value="HID">Hidalgo</option><option value="JAL">Jalisco</option><option value="MEX">México</option><option value="CMX">Mexico City</option><option value="MIC">Michoacán</option><option value="MOR">Morelos</option><option value="NAY">Nayarit</option><option value="NLE">Nuevo León</option><option value="OAX">Oaxaca</option><option value="PUE">Puebla</option><option value="QUE">Querétaro</option><option value="ROO">Quintana Roo</option><option value="SLP">San Luis Potosí</option><option value="SIN">Sinaloa</option><option value="SON">Sonora</option><option value="TAB">Tabasco</option><option value="TAM">Tamaulipas</option><option value="TLA">Tlaxcala</option><option value="VER">Veracruz</option><option value="YUC">Yucatán</option><option value="ZAC">Zacatecas</option>',
     GB: '<option value="">Please Select</option><option value="ABE">Aberdeen</option><option value="ABD">Aberdeenshire</option><option value="ANS">Angus</option><option value="ANT">Antrim</option><option value="ANN">Antrim and Newtownabbey</option><option value="ARD">Ards</option><option value="AND">Ards and North Down</option><option value="AGB">Argyll and Bute</option><option value="ARM">Armagh City and District Council</option><option value="ABC">Armagh, Banbridge and Craigavon</option><option value="SH-AC">Ascension Island</option><option value="BLA">Ballymena Borough</option><option value="BLY">Ballymoney</option><option value="BNB">Banbridge</option><option value="BNS">Barnsley</option><option value="BAS">Bath and North East Somerset</option><option value="BDF">Bedford</option><option value="BFS">Belfast district</option><option value="BIR">Birmingham</option><option value="BBD">Blackburn with Darwen</option><option value="BPL">Blackpool</option><option value="BGW">Blaenau Gwent County Borough</option><option value="BOL">Bolton</option><option value="BMH">Bournemouth</option><option value="BRC">Bracknell Forest</option><option value="BRD">Bradford</option><option value="BGE">Bridgend County Borough</option><option value="BNH">Brighton and Hove</option><option value="BKM">Buckinghamshire</option><option value="BUR">Bury</option><option value="CAY">Caerphilly County Borough</option><option value="CLD">Calderdale</option><option value="CAM">Cambridgeshire</option><option value="CMN">Carmarthenshire</option><option value="CKF">Carrickfergus Borough Council</option><option value="CSR">Castlereagh</option><option value="CCG">Causeway Coast and Glens</option><option value="CBF">Central Bedfordshire</option><option value="CGN">Ceredigion</option><option value="CHE">Cheshire East</option><option value="CHW">Cheshire West and Chester</option><option value="CRF">City and County of Cardiff</option><option value="SWA">City and County of Swansea</option><option value="BST">City of Bristol</option><option value="DER">City of Derby</option><option value="KHL">City of Kingston upon Hull</option><option value="LCE">City of Leicester</option><option value="LND">City of London</option><option value="NGM">City of Nottingham</option><option value="PTE">City of Peterborough</option><option value="PLY">City of Plymouth</option><option value="POR">City of Portsmouth</option><option value="STH">City of Southampton</option><option value="STE">City of Stoke-on-Trent</option><option value="SND">City of Sunderland</option><option value="WSM">City of Westminster</option><option value="WLV">City of Wolverhampton</option><option value="YOR">City of York</option><option value="CLK">Clackmannanshire</option><option value="CLR">Coleraine Borough Council</option><option value="CWY">Conwy County Borough</option><option value="CKT">Cookstown District Council</option><option value="CON">Cornwall</option><option value="DUR">County Durham</option><option value="COV">Coventry</option><option value="CGV">Craigavon Borough Council</option><option value="CMA">Cumbria</option><option value="DAL">Darlington</option><option value="DEN">Denbighshire</option><option value="DBY">Derbyshire</option><option value="DRS">Derry City and Strabane</option><option value="DRY">Derry City Council</option><option value="DEV">Devon</option><option value="DNC">Doncaster</option><option value="DOR">Dorset</option><option value="DOW">Down District Council</option><option value="DUD">Dudley</option><option value="DGY">Dumfries and Galloway</option><option value="DND">Dundee</option><option value="DGN">Dungannon and South Tyrone Borough Council</option><option value="EAY">East Ayrshire</option><option value="EDU">East Dunbartonshire</option><option value="ELN">East Lothian</option><option value="ERW">East Renfrewshire</option><option value="ERY">East Riding of Yorkshire</option><option value="ESX">East Sussex</option><option value="EDH">Edinburgh</option><option value="ENG">England</option><option value="ESS">Essex</option><option value="FAL">Falkirk</option><option value="FMO">Fermanagh and Omagh</option><option value="FER">Fermanagh District Council</option><option value="FIF">Fife</option><option value="FLN">Flintshire</option><option value="GAT">Gateshead</option><option value="GLG">Glasgow</option><option value="GLS">Gloucestershire</option><option value="GWN">Gwynedd</option><option value="HAL">Halton</option><option value="HAM">Hampshire</option><option value="HPL">Hartlepool</option><option value="HEF">Herefordshire</option><option value="HRT">Hertfordshire</option><option value="HLD">Highland</option><option value="IVC">Inverclyde</option><option value="IOW">Isle of Wight</option><option value="IOS">Isles of Scilly</option><option value="KEN">Kent</option><option value="KIR">Kirklees</option><option value="KWL">Knowsley</option><option value="LAN">Lancashire</option><option value="LRN">Larne Borough Council</option><option value="LDS">Leeds</option><option value="LEC">Leicestershire</option><option value="LMV">Limavady Borough Council</option><option value="LIN">Lincolnshire</option><option value="LBC">Lisburn and Castlereagh</option><option value="LSB">Lisburn City Council</option><option value="LIV">Liverpool</option><option value="BDG">London Borough of Barking and Dagenham</option><option value="BNE">London Borough of Barnet</option><option value="BEX">London Borough of Bexley</option><option value="BEN">London Borough of Brent</option><option value="BRY">London Borough of Bromley</option><option value="CMD">London Borough of Camden</option><option value="CRY">London Borough of Croydon</option><option value="EAL">London Borough of Ealing</option><option value="ENF">London Borough of Enfield</option><option value="HCK">London Borough of Hackney</option><option value="HMF">London Borough of Hammersmith and Fulham</option><option value="HRY">London Borough of Haringey</option><option value="HRW">London Borough of Harrow</option><option value="HAV">London Borough of Havering</option><option value="HIL">London Borough of Hillingdon</option><option value="HNS">London Borough of Hounslow</option><option value="ISL">London Borough of Islington</option><option value="LBH">London Borough of Lambeth</option><option value="LEW">London Borough of Lewisham</option><option value="MRT">London Borough of Merton</option><option value="NWM">London Borough of Newham</option><option value="RDB">London Borough of Redbridge</option><option value="RIC">London Borough of Richmond upon Thames</option><option value="SWK">London Borough of Southwark</option><option value="STN">London Borough of Sutton</option><option value="TWH">London Borough of Tower Hamlets</option><option value="WFT">London Borough of Waltham Forest</option><option value="WND">London Borough of Wandsworth</option><option value="MFT">Magherafelt District Council</option><option value="MAN">Manchester</option><option value="MDW">Medway</option><option value="MTY">Merthyr Tydfil County Borough</option><option value="WGN">Metropolitan Borough of Wigan</option><option value="MEA">Mid and East Antrim</option><option value="MUL">Mid Ulster</option><option value="MDB">Middlesbrough</option><option value="MLN">Midlothian</option><option value="MIK">Milton Keynes</option><option value="MON">Monmouthshire</option><option value="MRY">Moray</option><option value="MYL">Moyle District Council</option><option value="NTL">Neath Port Talbot County Borough</option><option value="NET">Newcastle upon Tyne</option><option value="NWP">Newport</option><option value="NYM">Newry and Mourne District Council</option><option value="NMD">Newry, Mourne and Down</option><option value="NTA">Newtownabbey Borough Council</option><option value="NFK">Norfolk</option><option value="NAY">North Ayrshire</option><option value="NDN">North Down Borough Council</option><option value="NEL">North East Lincolnshire</option><option value="NLK">North Lanarkshire</option><option value="NLN">North Lincolnshire</option><option value="NSM">North Somerset</option><option value="NTY">North Tyneside</option><option value="NYK">North Yorkshire</option><option value="NTH">Northamptonshire</option><option value="NIR">Northern Ireland</option><option value="NBL">Northumberland</option><option value="NTT">Nottinghamshire</option><option value="OLD">Oldham</option><option value="OMH">Omagh District Council</option><option value="ORK">Orkney Islands</option><option value="ELS">Outer Hebrides</option><option value="OXF">Oxfordshire</option><option value="PEM">Pembrokeshire</option><option value="PKN">Perth and Kinross</option><option value="POL">Poole</option><option value="POW">Powys</option><option value="RDG">Reading</option><option value="RCC">Redcar and Cleveland</option><option value="RFW">Renfrewshire</option><option value="RCT">Rhondda Cynon Taf</option><option value="RCH">Rochdale</option><option value="ROT">Rotherham</option><option value="GRE">Royal Borough of Greenwich</option><option value="KEC">Royal Borough of Kensington and Chelsea</option><option value="KTT">Royal Borough of Kingston upon Thames</option><option value="RUT">Rutland</option><option value="SH-HL">Saint Helena</option><option value="SLF">Salford</option><option value="SAW">Sandwell</option><option value="SCT">Scotland</option><option value="SCB">Scottish Borders</option><option value="SFT">Sefton</option><option value="SHF">Sheffield</option><option value="ZET">Shetland Islands</option><option value="SHR">Shropshire</option><option value="SLG">Slough</option><option value="SOL">Solihull</option><option value="SOM">Somerset</option><option value="SAY">South Ayrshire</option><option value="SGC">South Gloucestershire</option><option value="SLK">South Lanarkshire</option><option value="STY">South Tyneside</option><option value="SOS">Southend-on-Sea</option><option value="SHN">St Helens</option><option value="STS">Staffordshire</option><option value="STG">Stirling</option><option value="SKP">Stockport</option><option value="STT">Stockton-on-Tees</option><option value="STB">Strabane District Council</option><option value="SFK">Suffolk</option><option value="SRY">Surrey</option><option value="SWD">Swindon</option><option value="TAM">Tameside</option><option value="TFW">Telford and Wrekin</option><option value="THR">Thurrock</option><option value="TOB">Torbay</option><option value="TOF">Torfaen</option><option value="TRF">Trafford</option><option value="UKM">United Kingdom</option><option value="VGL">Vale of Glamorgan</option><option value="WKF">Wakefield</option><option value="WLS">Wales</option><option value="WLL">Walsall</option><option value="WRT">Warrington</option><option value="WAR">Warwickshire</option><option value="WBK">West Berkshire</option><option value="WDU">West Dunbartonshire</option><option value="WLN">West Lothian</option><option value="WSX">West Sussex</option><option value="WIL">Wiltshire</option><option value="WNM">Windsor and Maidenhead</option><option value="WRL">Wirral</option><option value="WOK">Wokingham</option><option value="WOR">Worcestershire</option><option value="WRX">Wrexham County Borough</option>',
-  }
+  };
   const country = countrySelect.value.split("-")[1];
-  stateSelect.innerHTML = statesObj[country]
+  stateSelect.innerHTML = statesObj[country];
 };
 
 const getUrlParams = async () => {
@@ -192,10 +192,22 @@ const validateForm = () => {
 
 const getValues = () => {
   const formFields = {};
+  const formData = new FormData();
+  const urlParams = new URLSearchParams(window.location.search);
+  const utms = ["utm_source", "utm_medium", "utm_content", "gclid", "fbclid"]
+  formData.append("$fields", ["Accepts-Marketing", ...utms]);
+  formData.append("Accepts-Marketing",true)
+  utms.forEach((urlParam) => {
+    formData.append(urlParam, urlParams.get(urlParam));
+  });
   formFields.first_name = document.querySelector("#first-name").value;
+  formData.append("first_name", formFields.first_name);
   formFields.last_name = document.querySelector("#last-name").value;
+  formData.append("last_name", formFields.last_name);
   formFields.email = document.querySelector("#email").value;
+  formData.append("email", formFields.email);
   formFields.phone = document.querySelector("#phone").value;
+  formData.append("phone_number", formFields.phone);
   formFields.password = document.querySelector("#password").value;
   formFields.address_1 = document.querySelector("#address1").value;
   formFields.address_2 = document.querySelector("#address2").value;
@@ -213,10 +225,38 @@ const getValues = () => {
     socialObject.followers = social.querySelector("select").value;
     formFields.social_media_accounts.push(socialObject);
   });
-  return formFields;
+  return [formFields, formData];
 };
 
 const apiErrorField = document.querySelector(".api-error");
+
+const postAmbassadors = async (body) => {
+  const response = await fetch("https://www.buckedup.com/ambassador/register-ext/json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  return response;
+};
+
+const postKlaviyo = async (formData) => {
+  try {
+    const response = await fetch(`https://manage.kmail-lists.com/ajax/subscriptions/subscribe?a=Q7VQ35&g=Raq6VZ`, {
+      method: "POST",
+      body: formData,
+    });
+    if (!response.ok) {
+      throw new Error("Klaviyo Network response was not ok: " + response.statusText);
+    }
+    const data = await response.json();
+    if (!data.success) throw new Error("Error sending to klaviyo: " + data.errors);
+    console.log(data);
+  } catch (e) {
+    console.warn(e);
+  }
+};
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -230,7 +270,7 @@ form.addEventListener("submit", async (e) => {
     spinner.classList.toggle("active");
     return;
   }
-  const body = getValues();
+  const [body, formData] = getValues();
   const urlParams = new URLSearchParams(window.location.search);
   body.parent_id = urlParams.get("pid");
   try {
@@ -238,13 +278,7 @@ form.addEventListener("submit", async (e) => {
   } catch {
     body.source = urlParams.get("source") || "no-source-provided";
   }
-  const response = await fetch("https://www.buckedup.com/ambassador/register-ext/json", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  const [response, responseKlaviyo] = await Promise.all([postAmbassadors(body), postKlaviyo(formData)]);
   if (!response.ok) {
     const responseLog = await response.json();
     apiErrorField.classList.toggle("active");
