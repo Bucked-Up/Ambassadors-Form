@@ -194,9 +194,9 @@ const getValues = () => {
   const formFields = {};
   const formData = new FormData();
   const urlParams = new URLSearchParams(window.location.search);
-  const utms = ["utm_source", "utm_medium", "utm_content", "gclid", "fbclid"]
+  const utms = ["utm_source", "utm_medium", "utm_content", "gclid", "fbclid"];
   formData.append("$fields", ["Accepts-Marketing", ...utms]);
-  formData.append("Accepts-Marketing",true)
+  formData.append("Accepts-Marketing", true);
   utms.forEach((urlParam) => {
     formData.append(urlParam, urlParams.get(urlParam));
   });
@@ -241,9 +241,24 @@ const postAmbassadors = async (body) => {
   return response;
 };
 
-const postKlaviyo = async (formData) => {
+const postKlaviyo = async (formData, country) => {
+  const getUrl = () => {
+    const baseUrl = "https://manage.kmail-lists.com/ajax/subscriptions/subscribe?";
+    switch (country) {
+      case "US":
+        return baseUrl + "a=Q7VQ35&g=Raq6VZ";
+      case "AU":
+        return baseUrl + "a=VGNvLD&g=X6vmmR";
+      case "CA":
+        return baseUrl + "a=XSvknt&g=VwqJMV";
+      case "MX":
+        return baseUrl + "a=&g=";
+      case "GB":
+        return baseUrl + "a=WhGrNj&g=UWBcqx";
+    }
+  };
   try {
-    const response = await fetch(`https://manage.kmail-lists.com/ajax/subscriptions/subscribe?a=Q7VQ35&g=Raq6VZ`, {
+    const response = await fetch(getUrl(), {
       method: "POST",
       body: formData,
     });
@@ -271,6 +286,7 @@ form.addEventListener("submit", async (e) => {
     return;
   }
   const [body, formData] = getValues();
+  const country = document.querySelector("#country").value.split("-")[1];
   const urlParams = new URLSearchParams(window.location.search);
   body.parent_id = urlParams.get("pid");
   try {
@@ -278,8 +294,8 @@ form.addEventListener("submit", async (e) => {
   } catch {
     body.source = urlParams.get("source") || "no-source-provided";
   }
-  try{
-    const [response, responseKlaviyo] = await Promise.all([postAmbassadors(body), postKlaviyo(formData)]);
+  try {
+    const [response, responseKlaviyo] = await Promise.all([postAmbassadors(body), postKlaviyo(formData, country)]);
     if (!response.ok) {
       const responseLog = await response.json();
       apiErrorField.classList.toggle("active");
@@ -290,7 +306,7 @@ form.addEventListener("submit", async (e) => {
       return;
     }
     window.location.href = `https://promo.buckedup.com/ambassador-thank-you?${urlParams}`;
-  }catch(e){
+  } catch (e) {
     apiErrorField.classList.toggle("active");
     apiErrorField.innerHTML = e.message === "Failed to fetch" ? "Oops! Something went wrong. Please check your connection." : e.message;
     button.toggleAttribute("disabled");
