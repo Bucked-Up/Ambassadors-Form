@@ -278,15 +278,22 @@ form.addEventListener("submit", async (e) => {
   } catch {
     body.source = urlParams.get("source") || "no-source-provided";
   }
-  const [response, responseKlaviyo] = await Promise.all([postAmbassadors(body), postKlaviyo(formData)]);
-  if (!response.ok) {
-    const responseLog = await response.json();
+  try{
+    const [response, responseKlaviyo] = await Promise.all([postAmbassadors(body), postKlaviyo(formData)]);
+    if (!response.ok) {
+      const responseLog = await response.json();
+      apiErrorField.classList.toggle("active");
+      if (responseLog.error_code === "AlreadyAffiliate") responseLog.error_message = "The customer account is already associated with a ambassador application";
+      apiErrorField.innerHTML = responseLog.error_message;
+      button.toggleAttribute("disabled");
+      spinner.classList.toggle("active");
+      return;
+    }
+    window.location.href = `https://promo.buckedup.com/ambassador-thank-you?${urlParams}`;
+  }catch(e){
     apiErrorField.classList.toggle("active");
-    if (responseLog.error_code === "AlreadyAffiliate") responseLog.error_message = "The customer account is already associated with a ambassador application";
-    apiErrorField.innerHTML = responseLog.error_message;
+    apiErrorField.innerHTML = e.message === "Failed to fetch" ? "Oops! Something went wrong. Please check your connection." : e.message;
     button.toggleAttribute("disabled");
     spinner.classList.toggle("active");
-    return;
   }
-  window.location.href = `https://promo.buckedup.com/ambassador-thank-you?${urlParams}`;
 });
