@@ -290,9 +290,10 @@ form.addEventListener("submit", async (e) => {
   const urlParams = new URLSearchParams(window.location.search);
   body.parent_id = urlParams.get("pid");
   try {
-    body.source = urlParams.get("source") || sourceField;
+    const utm_medium = urlParams.get("utm_medium") || ""
+    body.source = `${sourceField}${utm_medium}`
   } catch {
-    body.source = urlParams.get("source") || "no-source-provided";
+    body.source = utm_medium;
   }
   try {
     const [response, responseKlaviyo] = await Promise.all([postAmbassadors(body), postKlaviyo(formData, country)]);
