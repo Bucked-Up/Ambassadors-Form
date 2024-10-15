@@ -1,5 +1,42 @@
+const getTopLevelDomain = () => {
+  const fullDomain = window.location.hostname;
+  const domainRegex = /\.([a-z]{2,})\.([a-z]{2,})$/;
+  const match = fullDomain.match(domainRegex);
+  if (match) {
+    return `.${match[1]}.${match[2]}`;
+  } else {
+    return fullDomain;
+  }
+};
+const cookieConfig = `path=/; domain=${getTopLevelDomain()};max-age=3600`;
+
 const form = document.querySelector("#ambassador-form");
 const allInputs = form.querySelectorAll("input");
+
+const phoneField = document.getElementById("phone");
+const iti = window.intlTelInput(phoneField, {
+  utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.2/build/js/utils.js",
+  autoPlaceholder: "aggressive",
+  initialCountry: "auto",
+  geoIpLookup: async (success, failure) => {
+    try {
+      const cookieCountry = document.cookie.split("user_country=")[1]?.split(";")[0];
+      if (cookieCountry) {
+        success(cookieCountry);
+        return;
+      }
+      const response = await fetch("https://get.geojs.io/v1/ip/country.json");
+      const data = await response.json();
+      if (response.ok) {
+        document.cookie = `user_country=${data.country};${cookieConfig}`;
+        success(data.country);
+      } else throw new error("Error Fetching Ip", response, data);
+    } catch (e) {
+      console.warn(e);
+      failure();
+    }
+  },
+});
 
 const createInvalid = (text) => {
   return `<p class="error-text">${text}</p>`;
@@ -16,7 +53,11 @@ const checkInput = (input) => {
       (regex && !reg.test(input.value)) || (match && input.value !== match.value) || (matcher && input.value !== matcher.value && matcher.value.length !== 0)
     );
   };
-
+  if (input.type === "tel" && !iti.isValidNumber()) {
+    input.classList.add("error");
+    input.insertAdjacentHTML("afterend", createInvalid("Invalid!"));
+    return;
+  }
   if (input.type === "checkbox" && !input.checked) return false;
   if ((!input.hasAttribute("optional") && input.value.trim().length === 0) || valueIsNotValid()) {
     input.classList.add("error");
@@ -169,6 +210,7 @@ const validateForm = () => {
   const inputs = form.querySelectorAll("input");
   const selects = form.querySelectorAll("select");
   let isValid = true;
+  //AQUI
   inputs.forEach((input) => {
     if (!checkInput(input)) {
       isValid = false;
@@ -206,8 +248,8 @@ const getValues = () => {
   formData.append("last_name", formFields.last_name);
   formFields.email = document.querySelector("#email").value;
   formData.append("email", formFields.email);
-  formFields.phone = document.querySelector("#phone").value;
-  formData.append("phone_number", formFields.phone);
+  formFields.phone = iti.getNumber();
+  formData.append("phone_number", iti.getNumber());
   formFields.password = document.querySelector("#password").value;
   formFields.address_1 = document.querySelector("#address1").value;
   formFields.address_2 = document.querySelector("#address2").value;
@@ -290,8 +332,8 @@ form.addEventListener("submit", async (e) => {
   const urlParams = new URLSearchParams(window.location.search);
   body.parent_id = urlParams.get("pid");
   try {
-    const utm_medium = urlParams.get("utm_medium") || ""
-    body.source = `${sourceField}${utm_medium}`
+    const utm_medium = urlParams.get("utm_medium") || "";
+    body.source = `${sourceField}${utm_medium}`;
   } catch {
     body.source = utm_medium;
   }
