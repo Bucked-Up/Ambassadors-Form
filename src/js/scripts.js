@@ -60,7 +60,7 @@ const handleAmbassadorForm = ({redirectUrl}) => {
       return false;
     }
     if (input.type === "checkbox" && !input.checked) return false;
-    if (!input.type === "tel" && ((!input.hasAttribute("optional") && input.value.trim().length === 0) || valueIsNotValid())) {
+    if (input.type !== "tel" && ((!input.hasAttribute("optional") && input.value.trim().length === 0) || valueIsNotValid())) {
       input.classList.add("error");
       if (valueIsNotValid() && input.value.trim().length > 0 && !input.nextElementSibling?.classList.contains("error-text")) {
         input.insertAdjacentHTML("afterend", createInvalid("Invalid!"));
@@ -358,3 +358,4 @@ const handleAmbassadorForm = ({redirectUrl}) => {
     }
   });
 };
+handleAmbassadorForm({redirectUrl: "https://promo.buckedup.com/ambassador-thank-you"})
