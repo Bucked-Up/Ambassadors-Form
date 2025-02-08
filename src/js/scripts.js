@@ -358,4 +358,3 @@ const handleAmbassadorForm = ({redirectUrl}) => {
     }
   });
 };
-handleAmbassadorForm({redirectUrl: "https://promo.buckedup.com/ambassador-thank-you"})
