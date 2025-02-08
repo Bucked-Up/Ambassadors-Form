@@ -208,8 +208,8 @@ const handleAmbassadorForm = ({redirectUrl}) => {
   });
 
   const validateForm = () => {
-    const inputs = form.querySelectorAll("input");
-    const selects = form.querySelectorAll("select");
+    const inputs = [...form.querySelectorAll("input:not(.iti *)"),form.querySelector("#phone")];
+    const selects = form.querySelectorAll("select:not(.iti *)");
     let isValid = true;
     inputs.forEach((input) => {
       if (!checkInput(input)) {
@@ -309,7 +309,6 @@ const handleAmbassadorForm = ({redirectUrl}) => {
       }
       const data = await response.json();
       if (!data.success) throw new Error("Error sending to klaviyo: " + data.errors);
-      console.log(data);
     } catch (e) {
       console.warn(e);
     }
@@ -331,8 +330,8 @@ const handleAmbassadorForm = ({redirectUrl}) => {
     const country = document.querySelector("#country").value.split("-")[1];
     const urlParams = new URLSearchParams(window.location.search);
     body.parent_id = urlParams.get("pid");
+    const utm_medium = urlParams.get("utm_medium") || "";
     try {
-      const utm_medium = urlParams.get("utm_medium") || "";
       body.source = `${sourceField}${utm_medium}`;
     } catch {
       body.source = utm_medium;
