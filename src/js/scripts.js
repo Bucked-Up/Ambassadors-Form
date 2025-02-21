@@ -233,7 +233,7 @@ const handleAmbassadorForm = ({ redirectUrl, klaviyoA, klaviyoG }) => {
     const formData = new FormData();
     const urlParams = new URLSearchParams(window.location.search);
     const utms = ["utm_source", "utm_medium", "utm_content", "gclid", "fbclid"];
-    formData.append("$fields", ["Accepts-Marketing", ...utms]);
+    formData.append("$fields", ["Accepts-Marketing", "source", ...utms]);
     formData.append("Accepts-Marketing", true);
     utms.forEach((urlParam) => {
       formData.append(urlParam, urlParams.get(urlParam));
@@ -332,8 +332,10 @@ const handleAmbassadorForm = ({ redirectUrl, klaviyoA, klaviyoG }) => {
     const utm_medium = urlParams.get("utm_medium") || "";
     try {
       body.source = `${sourceField}${utm_medium}`;
+      formData.append("source", `${sourceField}${utm_medium}`);
     } catch {
       body.source = utm_medium;
+      formData.append("source", utm_medium);
     }
     try {
       const [response, responseKlaviyo] = await Promise.all([postAmbassadors(body), postKlaviyo(formData, country)]);
