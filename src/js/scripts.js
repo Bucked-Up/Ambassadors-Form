@@ -233,8 +233,9 @@ const handleAmbassadorForm = ({ redirectUrl, klaviyoA, klaviyoG }) => {
     const formData = new FormData();
     const urlParams = new URLSearchParams(window.location.search);
     const utms = Object.fromEntries(urlParams.entries());
-    formData.append("$fields", ["Accepts-Marketing", "amb_source", ...Object.keys(utms)]);
+    formData.append("$fields", ["Accepts-Marketing", "sms_consent", "amb_source", ...Object.keys(utms)]);
     formData.append("Accepts-Marketing", true);
+    formData.append("sms_consent", true);
     Object.keys(utms).forEach((key) => {
       formData.append(key, utms[key]);
     });
