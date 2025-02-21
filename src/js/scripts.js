@@ -233,7 +233,7 @@ const handleAmbassadorForm = ({ redirectUrl, klaviyoA, klaviyoG }) => {
     const formData = new FormData();
     const urlParams = new URLSearchParams(window.location.search);
     const utms = Object.fromEntries(urlParams.entries());
-    formData.append("$fields", ["Accepts-Marketing", "source", ...Object.keys(utms)]);
+    formData.append("$fields", ["Accepts-Marketing", "amb_source", ...Object.keys(utms)]);
     formData.append("Accepts-Marketing", true);
     Object.keys(utms).forEach((key) => {
       formData.append(key, utms[key]);
@@ -332,10 +332,10 @@ const handleAmbassadorForm = ({ redirectUrl, klaviyoA, klaviyoG }) => {
     const utm_medium = urlParams.get("utm_medium") || "";
     try {
       body.source = `${sourceField}${utm_medium}`;
-      formData.append("source", `${sourceField}${utm_medium}`);
+      formData.append("amb_source", `${sourceField}${utm_medium}`);
     } catch {
       body.source = utm_medium;
-      formData.append("source", utm_medium);
+      formData.append("amb_source", utm_medium);
     }
     try {
       const [response, responseKlaviyo] = await Promise.all([postAmbassadors(body), postKlaviyo(formData, country)]);
