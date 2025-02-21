@@ -1,4 +1,4 @@
-const handleAmbassadorForm = ({ redirectUrl }) => {
+const handleAmbassadorForm = ({ redirectUrl, klaviyoA, klaviyoG }) => {
   const getTopLevelDomain = () => {
     const fullDomain = window.location.hostname;
     const domainRegex = /\.([a-z]{2,})\.([a-z]{2,})$/;
@@ -282,6 +282,9 @@ const handleAmbassadorForm = ({ redirectUrl }) => {
   const postKlaviyo = async (formData, country) => {
     const getUrl = () => {
       const baseUrl = "https://manage.kmail-lists.com/ajax/subscriptions/subscribe?";
+      if(klaviyoA && klaviyoG){
+        return baseUrl + `a=${klaviyoA}&g=${klaviyoG}`;
+      }
       switch (country) {
         case "US":
           return baseUrl + "a=Q7VQ35&g=Raq6VZ";
