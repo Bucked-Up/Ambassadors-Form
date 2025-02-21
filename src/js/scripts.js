@@ -232,11 +232,11 @@ const handleAmbassadorForm = ({ redirectUrl, klaviyoA, klaviyoG }) => {
     const formFields = {};
     const formData = new FormData();
     const urlParams = new URLSearchParams(window.location.search);
-    const utms = ["utm_source", "utm_medium", "utm_content", "gclid", "fbclid"];
-    formData.append("$fields", ["Accepts-Marketing", "source", ...utms]);
+    const utms = Object.fromEntries(urlParams.entries());
+    formData.append("$fields", ["Accepts-Marketing", "source", ...Object.keys(utms)]);
     formData.append("Accepts-Marketing", true);
-    utms.forEach((urlParam) => {
-      formData.append(urlParam, urlParams.get(urlParam));
+    Object.keys(utms).forEach((key) => {
+      formData.append(key, utms[key]);
     });
     formFields.first_name = document.querySelector("#first-name").value;
     formData.append("first_name", formFields.first_name);
