@@ -1,16 +1,4 @@
 const handleAmbassadorForm = ({ redirectUrl, klaviyoA, klaviyoG }) => {
-  const getTopLevelDomain = () => {
-    const fullDomain = window.location.hostname;
-    const domainRegex = /\.([a-z]{2,})\.([a-z]{2,})$/;
-    const match = fullDomain.match(domainRegex);
-    if (match) {
-      return `.${match[1]}.${match[2]}`;
-    } else {
-      return fullDomain;
-    }
-  };
-  const cookieConfig = `path=/; domain=${getTopLevelDomain()};max-age=3600`;
-
   const form = document.querySelector("#ambassador-form");
   const allInputs = form.querySelectorAll("input");
 
@@ -18,25 +6,7 @@ const handleAmbassadorForm = ({ redirectUrl, klaviyoA, klaviyoG }) => {
   const iti = window.intlTelInput(phoneField, {
     utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.2/build/js/utils.js",
     autoPlaceholder: "aggressive",
-    initialCountry: "auto",
-    geoIpLookup: async (success, failure) => {
-      try {
-        const cookieCountry = document.cookie.split("user_country=")[1]?.split(";")[0];
-        if (cookieCountry) {
-          success(cookieCountry);
-          return;
-        }
-        const response = await fetch("https://get.geojs.io/v1/ip/country.json");
-        const data = await response.json();
-        if (response.ok) {
-          document.cookie = `user_country=${data.country};${cookieConfig}`;
-          success(data.country);
-        } else throw new error("Error Fetching Ip", response, data);
-      } catch (e) {
-        console.warn(e);
-        failure();
-      }
-    },
+    initialCountry: "US",
   });
 
   const createInvalid = (text) => {
@@ -283,7 +253,7 @@ const handleAmbassadorForm = ({ redirectUrl, klaviyoA, klaviyoG }) => {
   const postKlaviyo = async (formData, country) => {
     const getUrl = () => {
       const baseUrl = "https://manage.kmail-lists.com/ajax/subscriptions/subscribe?";
-      if(klaviyoA && klaviyoG){
+      if (klaviyoA && klaviyoG) {
         return baseUrl + `a=${klaviyoA}&g=${klaviyoG}`;
       }
       switch (country) {
